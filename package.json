@@ -1,0 +1,18 @@
+{
+  "name": "project-c",
+  "version": "0.0.1",
+  "description": "this is cryptocurrency data visualization web application. ",
+  "scripts": {
+    "dev:server": "nodemon"
+  },
+  "author": "Kang Min Hyeok<rkdalsgur032@gmail.com>",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/node": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "nodemon": "^2.0.14"
+  }
+}
