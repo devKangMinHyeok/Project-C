@@ -4,8 +4,23 @@
  * Written by Kang MinHyeok <rkdalsgur032@gmail.com>, October 2021
  */
 
-const url =
-  "https://api.upbit.com/v1/candles/days?market=KRW-BTC&count=200&convertingPriceUnit=KRW";
-const options = { method: "GET", headers: { Accept: "application/json" } };
+import app from "./server";
 
-fetch(url, options).then((res) => console.log(res.json()));
+const PORT = 3000;
+
+const timeNow = () => {
+  const time = new Date();
+  const hour = time.getHours().toString().padStart(2, "0");
+  const minute = time.getMinutes().toString().padStart(2, "0");
+  const second = time.getSeconds().toString().padStart(2, "0");
+
+  return `${hour}:${minute}:${second}`;
+};
+
+const handleListening = () => {
+  console.log(
+    `[${timeNow()}] Server listening on port http://localhost:${PORT}`
+  );
+};
+
+app.listen(PORT, handleListening);
