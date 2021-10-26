@@ -4,8 +4,9 @@
  * Written by Kang MinHyeok <rkdalsgur032@gmail.com>, October 2021
  */
 
-import app from "./server";
 import db from "./db";
+import "./models/UpbitApiMarketCode";
+import app from "./server";
 
 const PORT = 3000;
 
