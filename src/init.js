@@ -5,6 +5,7 @@
  */
 
 import app from "./server";
+import db from "./db";
 
 const PORT = 3000;
 
