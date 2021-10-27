@@ -28,33 +28,38 @@ const parseMarketCodeObj = (
 };
 
 const checkUpdates = async (newDataArray, originDataArray) => {
-  let originDataMarketCodeList = [];
-  let newDataMarketCodeList = [];
+  try {
+    let originDataMarketCodeList = [];
+    let newDataMarketCodeList = [];
 
-  originDataArray.forEach((originData) => {
-    originDataMarketCodeList.push(originData.marketCodeFull);
-  });
-  newDataArray.forEach((newData) => {
-    newDataMarketCodeList.push(newData.marketCodeFull);
-  });
+    originDataArray.forEach((originData) => {
+      originDataMarketCodeList.push(originData.marketCodeFull);
+    });
+    newDataArray.forEach((newData) => {
+      newDataMarketCodeList.push(newData.marketCodeFull);
+    });
 
-  const isSame =
-    JSON.stringify(originDataMarketCodeList) ===
-    JSON.stringify(newDataMarketCodeList);
-  if (isSame) {
-    return false;
-  } else {
-    const newMarketCodeList = newDataMarketCodeList.filter(
-      (marketCode) => !originDataMarketCodeList.includes(marketCode)
-    );
-    const removedMarketCodeList = originDataMarketCodeList.filter(
-      (marketCode) => !newDataMarketCodeList.includes(marketCode)
-    );
-    const changedMarketCodeList = {
-      newMarketCodeList,
-      removedMarketCodeList,
-    };
-    return changedMarketCodeList;
+    const isSame =
+      JSON.stringify(originDataMarketCodeList) ===
+      JSON.stringify(newDataMarketCodeList);
+
+    if (isSame) {
+      return false;
+    } else {
+      const newMarketCodeList = newDataMarketCodeList.filter(
+        (marketCode) => !originDataMarketCodeList.includes(marketCode)
+      );
+      const removedMarketCodeList = originDataMarketCodeList.filter(
+        (marketCode) => !newDataMarketCodeList.includes(marketCode)
+      );
+      const changedMarketCodeList = {
+        newMarketCodeList,
+        removedMarketCodeList,
+      };
+      return changedMarketCodeList;
+    }
+  } catch (error) {
+    console.log("[ERROR in checkUpdates] | ", error);
   }
 };
 
@@ -63,50 +68,54 @@ const updateMarketCodeDatabase = async (
   originDataArray,
   changedMarketCodeList
 ) => {
-  const addMarketCodeDataArray = await formattedMarketCodeArray.filter(
-    (marketCode) => {
-      return changedMarketCodeList.newMarketCodeList.includes(
-        marketCode.marketCodeFull
-      );
-    }
-  );
+  try {
+    const addMarketCodeDataArray = await formattedMarketCodeArray.filter(
+      (marketCode) => {
+        return changedMarketCodeList.newMarketCodeList.includes(
+          marketCode.marketCodeFull
+        );
+      }
+    );
 
-  const removeMarketCodeDataArray = await originDataArray.filter(
-    (marketCode) => {
-      return changedMarketCodeList.removedMarketCodeList.includes(
-        marketCode.marketCodeFull
-      );
-    }
-  );
+    const removeMarketCodeDataArray = await originDataArray.filter(
+      (marketCode) => {
+        return changedMarketCodeList.removedMarketCodeList.includes(
+          marketCode.marketCodeFull
+        );
+      }
+    );
 
-  if (addMarketCodeDataArray) {
-    try {
-      addMarketCodeDataArray.forEach(async (marketCode) => {
-        console.log("Saving: ", marketCode.englishName);
-        await UpbitApiMarketCode.create(marketCode);
-      });
-    } catch (error) {
-      console.log(
-        "[ERROR in removeMarketCodeDataArray - addMarketCodeDataArray] | " +
-          error
-      );
-    }
-  }
-
-  if (removeMarketCodeDataArray) {
-    try {
-      removeMarketCodeDataArray.forEach(async (marketCode) => {
-        console.log("deleting: ", marketCode.englishName);
-        await UpbitApiMarketCode.deleteOne({
-          marketCodeFull: marketCode.marketCodeFull,
+    if (addMarketCodeDataArray) {
+      try {
+        addMarketCodeDataArray.forEach(async (marketCode) => {
+          console.log("Saving: ", marketCode.englishName);
+          await UpbitApiMarketCode.create(marketCode);
         });
-      });
-    } catch (error) {
-      console.log(
-        "[ERROR in removeMarketCodeDataArray - removeMarketCodeDataArray] | " +
-          error
-      );
+      } catch (error) {
+        console.log(
+          "[ERROR in removeMarketCodeDataArray - if(addMarketCodeDataArray)] | " +
+            error
+        );
+      }
     }
+
+    if (removeMarketCodeDataArray) {
+      try {
+        removeMarketCodeDataArray.forEach(async (marketCode) => {
+          console.log("deleting: ", marketCode.englishName);
+          await UpbitApiMarketCode.deleteOne({
+            marketCodeFull: marketCode.marketCodeFull,
+          });
+        });
+      } catch (error) {
+        console.log(
+          "[ERROR in removeMarketCodeDataArray - removeMarketCodeDataArray] | " +
+            error
+        );
+      }
+    }
+  } catch (error) {
+    console.log("[ERROR in removeMarketCodeDataArray] | " + error);
   }
 };
 
