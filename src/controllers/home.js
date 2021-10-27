@@ -1,11 +1,12 @@
-import getMarketCodeApi from "./upbitApi/marketCode";
+import initMarketCodeApi from "./upbitApi/getMarketCodeApi/initmarketCodeApi";
+import errorLogger from "./usefulFunctions/errorLogger";
 
 const home = async (req, res) => {
   try {
-    getMarketCodeApi();
+    initMarketCodeApi();
     return res.render("home");
   } catch (error) {
-    console.log("[ERROR in home] | " + error);
+    errorLogger(error, "home");
   }
 };
 
