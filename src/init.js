@@ -3,18 +3,11 @@
  * Proprietary and confidential
  * Written by Kang MinHyeok <rkdalsgur032@gmail.com>, October 2021
  */
-
+import "dotenv/config";
 import "./db";
 import "./models/UpbitApiMarketCode";
 import app from "./server";
-import getTimeNow from "./controllers/usefulFunctions/getTimeNow";
-
-const PORT = process.env.PORT || 3000;
-
-const handleListening = () => {
-  console.log(
-    `[${getTimeNow()}] Server listening on port http://localhost:${PORT}`
-  );
-};
+import handleListening from "./controllers/serverFunctions/handleListening";
+import PORT from "./controllers/serverFunctions/generatePortNum";
 
 app.listen(PORT, handleListening);

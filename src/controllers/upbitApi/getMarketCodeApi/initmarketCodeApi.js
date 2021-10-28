@@ -9,7 +9,7 @@ import checkUpdates from "./checkUpdates";
 import updateMarketCodeDatabase from "./updateMarketCodeDatabase";
 
 const initMarketCodeApi = async () => {
-  const url = "https://api.upbit.com/v1/market/all?isDetails=true";
+  const url = process.env.UPBIT_MARKET_CODE_API_URL;
   const options = { method: "GET", headers: { Accept: "application/json" } };
   try {
     const marketCodeArray = await getMarketCodeArray(url, options);
