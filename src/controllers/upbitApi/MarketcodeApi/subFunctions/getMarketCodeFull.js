@@ -1,3 +1,5 @@
+import errorLogger from "../../../usefulFunctions/errorLogger";
+
 const getMarketCodeFull = (DataArray) => {
   let marketCodeList = [];
   try {

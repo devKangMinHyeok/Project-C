@@ -1,6 +1,6 @@
-import errorLogger from "../../usefulFunctions/errorLogger";
+import errorLogger from "../../../../usefulFunctions/errorLogger";
 
-const listOneIncludeListTwo = (list1, list2) => {
+const listInclude = (list1, list2) => {
   let result = true;
   try {
     for (let i = 0; i < list2.length; i++) {
@@ -11,7 +11,7 @@ const listOneIncludeListTwo = (list1, list2) => {
     }
     return result;
   } catch (error) {
-    errorLogger(error, "listOneIncludeListTwo");
+    errorLogger(error, "listInclude");
   }
 };
-export default listOneIncludeListTwo;
+export default listInclude;

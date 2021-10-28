@@ -1,4 +1,4 @@
-import errorLogger from "../../usefulFunctions/errorLogger";
+import errorLogger from "../../../../usefulFunctions/errorLogger";
 
 const checkListLengthSame = (list1, list2) => {
   try {

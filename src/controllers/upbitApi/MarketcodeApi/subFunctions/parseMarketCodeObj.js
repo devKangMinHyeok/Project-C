@@ -1,3 +1,5 @@
+import errorLogger from "../../../usefulFunctions/errorLogger";
+
 const parseMarketCodeObj = (
   market_code_full,
   korean_name,
