@@ -1,11 +1,11 @@
 import express from "express";
-import morgan from "morgan";
 import rootRouter from "./routers/rootRouter";
+import customServerLogger from "./controllers/usefulFunctions/customServerLogger";
+
+const myTimezone = "Asia/Tokyo";
 
 const app = express();
-const logger = morgan(
-  ":date :method :url :status :response-time ms - :res[content-length]"
-);
+const logger = customServerLogger(myTimezone);
 
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");

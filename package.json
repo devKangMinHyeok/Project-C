@@ -17,6 +17,7 @@
     "@babel/core": "^7.15.8",
     "@babel/node": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
-    "nodemon": "^2.0.14"
+    "nodemon": "^2.0.14",
+    "moment-timezone": "^0.5.33"
   }
 }

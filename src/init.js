@@ -4,24 +4,16 @@
  * Written by Kang MinHyeok <rkdalsgur032@gmail.com>, October 2021
  */
 
-import db from "./db";
+import "./db";
 import "./models/UpbitApiMarketCode";
 import app from "./server";
+import getTimeNow from "./controllers/usefulFunctions/getTimeNow";
 
-const PORT = 3000;
-
-const timeNow = () => {
-  const time = new Date();
-  const hour = time.getHours().toString().padStart(2, "0");
-  const minute = time.getMinutes().toString().padStart(2, "0");
-  const second = time.getSeconds().toString().padStart(2, "0");
-
-  return `${hour}:${minute}:${second}`;
-};
+const PORT = process.env.PORT || 3000;
 
 const handleListening = () => {
   console.log(
-    `[${timeNow()}] Server listening on port http://localhost:${PORT}`
+    `[${getTimeNow()}] Server listening on port http://localhost:${PORT}`
   );
 };
 
