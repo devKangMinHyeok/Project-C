@@ -1,7 +1,8 @@
 import MarketCodeApi from "./upbitApi/MarketcodeApi/MarketCodeApi";
+import DayCandleApi from "./upbitApi/MarketCandleApi/dayCandleApi/dayCandleApi";
 import errorLogger from "./usefulFunctions/errorLogger";
 
-const getMarketCode = async (req, res) => {
+export const getMarketCode = async (req, res) => {
   const url = process.env.UPBIT_MARKET_CODE_API_URL;
   const options = { method: "GET", headers: { Accept: "application/json" } };
 
@@ -14,4 +15,17 @@ const getMarketCode = async (req, res) => {
   }
 };
 
-export default getMarketCode;
+export const getDayCandle = async (req, res) => {
+  try {
+    const apiDC = new DayCandleApi(
+      "KRW-BTC",
+      "2021-01-01 00:00:01",
+      "2021-10-29 00:00:01"
+    );
+    apiDC.init();
+
+    return res.render("dayCandle");
+  } catch (error) {
+    errorLogger(error, "getDayCandle");
+  }
+};
