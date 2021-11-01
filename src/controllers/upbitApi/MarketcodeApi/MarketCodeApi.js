@@ -113,10 +113,13 @@ class MarketCodeApi {
 
       if (addArray) {
         try {
-          addArray.map(async (data) => {
-            await UpbitApiMarketCode.create(data);
-            return console.log("Saved: ", data.englishName);
-          });
+          for (let i = 0; i < addArray.length; i++) {
+            await UpbitApiMarketCode.create(addArray[i]);
+            console.log(
+              `Saved:  ${addArray[i].englishName}(${addArray[i].marketCodeFull})`
+            );
+          }
+          console.log(`Add ${addArray.length} marketCode`);
         } catch (error) {
           errorLogger(error, "MarketCodeApi<-updateDatabase<-if(removeArray)");
         }
@@ -124,18 +127,21 @@ class MarketCodeApi {
 
       if (removeArray) {
         try {
-          removeArray.map(async (data) => {
+          for (let i = 0; i < removeArray.length; i++) {
             await UpbitApiMarketCode.deleteOne({
-              marketCodeFull: data.marketCodeFull,
+              marketCodeFull: removeArray[i].marketCodeFull,
             });
-            return console.log("deleted: ", data.englishName);
-          });
+            return console.log(
+              `deleted:  ${removeArray[i].englishName}(${removeArray[i].marketCodeFull})`
+            );
+          }
+          console.log(`Remove ${removeArray.length} marketCode`);
         } catch (error) {
           errorLogger(error, "MarketCodeApi<-updateDatabase<-if(removeArray)");
         }
       }
     } catch (error) {
-      errorLogger(error, "MarketCodeApi<-updateDatabase<-");
+      errorLogger(error, "MarketCodeApi<-updateDatabase");
     }
   };
 }
