@@ -4,7 +4,7 @@ import getCandleUrl from "./subFunctions/getCandleUrl";
 import getCandleSlice from "./subFunctions/getCandleSlice";
 
 //For getApi
-import fetch from "node-fetch";
+import marketCandleFetch from "../marketCandleFetch";
 
 class DayCandleApi {
   constructor(marketCode, startTime, endTime) {
@@ -39,8 +39,7 @@ class DayCandleApi {
 
   getApi = async (url) => {
     try {
-      const response = await fetch(url, this.options);
-      return await response.json();
+      return await marketCandleFetch(url, this.options);
     } catch (error) {
       errorLogger(error, "DayCandleApi<-getApi");
     }

@@ -13,11 +13,6 @@ const UpbitApiMarketCodeSchema = new mongoose.Schema({
   createdAt: { type: Date, required: true, default: Date.now },
 });
 
-const setCrapeDay = (next) => {
-  console.log(this.market);
-  next();
-};
-
 UpbitApiMarketCodeSchema.pre("save", async function (next) {
   const startDay = await getStartDay(this.marketCodeFull);
   const formatDate = dayjs(startDay);

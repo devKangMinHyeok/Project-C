@@ -9,7 +9,7 @@ export const getMarketCode = async (req, res) => {
 
   try {
     const apiMC = new MarketCodeApi(url, options);
-    apiMC.init();
+    await apiMC.init();
     return res.render("marketCode");
   } catch (error) {
     errorLogger(error, "getMarketCode");
