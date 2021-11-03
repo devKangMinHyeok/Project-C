@@ -1,5 +1,11 @@
 extends layout 
+include mixins/chart
 
 block content 
   div dayCandle
   a(href="/") home
+  div chart 
+    h2=formattedCandleData.marketCodeFull
+    each data in formattedCandleData
+      div 
+        +chart(data)

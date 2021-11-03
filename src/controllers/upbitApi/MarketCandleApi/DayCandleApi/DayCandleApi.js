@@ -1,3 +1,6 @@
+//DB Model
+import UpbitApiDayCandle from "../../../../models/UpbitApiDayCandle";
+
 // DayCandleApi Class
 import errorLogger from "../../../usefulFunctions/errorLogger";
 import getCandleUrl from "./subFunctions/getCandleUrl";
@@ -5,6 +8,9 @@ import getCandleSlice from "./subFunctions/getCandleSlice";
 
 //For getApi
 import marketCandleFetch from "../marketCandleFetch";
+
+//For updateCandleDatabase
+import parseDayCandleObj from "./subFunctions/parseDayCandleObj";
 
 class DayCandleApi {
   constructor(marketCode, startTime, endTime) {
@@ -32,6 +38,8 @@ class DayCandleApi {
         this.candleData.push(...dayCandleArray);
       }
       console.dir(this.candleData, { maxArrayLength: null });
+      console.log(`Completed Loading ${this.marketCode} Data`);
+      return this.candleData;
     } catch (error) {
       errorLogger(error, "DayCandleApi<-init");
     }
@@ -84,6 +92,21 @@ class DayCandleApi {
       throw error;
     }
     return candleUrls;
+  };
+
+  updateCandleDatabase = async () => {
+    console.log("now");
+    this.formatCandleData = [];
+
+    for (let i = 0; i < this.candleData.length; i++) {
+      this.formatCandleData.push(parseDayCandleObj(this.candleData[i]));
+    }
+    console.dir(this.formatCandleData, { maxArrayLength: null });
+
+    for (let i = 0; i < this.formatCandleData.length; i++) {
+      await UpbitApiDayCandle.create(this.formatCandleData[i]);
+    }
+    return this.formatCandleData;
   };
 }
 

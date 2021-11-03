@@ -6,6 +6,7 @@
 import "dotenv/config";
 import "./db";
 import "./models/UpbitApiMarketCode";
+import "./models/UpbitApiDayCandle";
 import app from "./server";
 import handleListening from "./controllers/serverFunctions/handleListening";
 import PORT from "./controllers/serverFunctions/generatePortNum";
