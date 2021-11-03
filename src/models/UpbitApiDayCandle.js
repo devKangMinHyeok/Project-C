@@ -10,9 +10,10 @@ const UpbitApiDayCandleSchema = new mongoose.Schema({
   lastTickTime: { type: Date, required: true },
   accTradePrice: { type: Number, required: true },
   accTradeVolume: { type: Number, required: true },
-  prevClosingPrice: { type: Number, required: true },
-  changePrice: { type: Number, required: true },
+  prevClosingPrice: { type: Number },
+  changePrice: { type: Number },
   changeRate: { type: Number, required: true },
+  createdAt: { type: Date, required: true, default: Date.now },
 });
 
 const UpbitApiDayCandle = mongoose.model(

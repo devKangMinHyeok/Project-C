@@ -38,14 +38,13 @@ const waitApiRemain = (response) => {
 const marketCandleFetch = async (url, options) => {
   try {
     let response = await fetch(url, options);
-    const sleepTime = await waitApiRemain(response);
+    const sleepTime = waitApiRemain(response);
 
     if (sleepTime !== 0) {
       await sleep(sleepTime);
     }
 
     let result = await response.json();
-
     return result;
   } catch (error) {
     errorLogger(error, "marketCandleFetch");

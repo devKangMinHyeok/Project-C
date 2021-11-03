@@ -24,20 +24,17 @@ class DayCandleApi {
     this.lastCount = this.sliceInfo.lastCount;
     this.timeStamps = this.sliceInfo.timeStamps;
     this.unit = "days";
-    console.log(this.sliceInfo);
   }
 
   init = async () => {
     try {
       this.candleUrls = this.getCandleUrls();
-      console.log(this.candleUrls);
       this.candleData = [];
       for (let i = 0; i < this.candleUrls.length; i++) {
         const url = this.candleUrls[i];
         const dayCandleArray = await this.getApi(url);
         this.candleData.push(...dayCandleArray);
       }
-      console.dir(this.candleData, { maxArrayLength: null });
       console.log(`Completed Loading ${this.marketCode} Data`);
       return this.candleData;
     } catch (error) {
@@ -54,59 +51,68 @@ class DayCandleApi {
   };
 
   getCandleUrls = () => {
-    let candleUrls = [];
-    if (this.callTimes === 1) {
-      candleUrls.push(
-        getCandleUrl(this.unit, this.marketCode, this.endTime, this.lastCount)
-      );
-    } else if (this.callTimes > 1) {
-      candleUrls.push(
-        getCandleUrl(
-          this.unit,
-          this.marketCode,
-          this.endTime,
-          this.MAX_CALL_TIMES
-        )
-      );
-      for (let i = 0; i < this.callTimes - 2; i++) {
+    try {
+      let candleUrls = [];
+      if (this.callTimes === 1) {
+        candleUrls.push(
+          getCandleUrl(this.unit, this.marketCode, this.endTime, this.lastCount)
+        );
+      } else if (this.callTimes > 1) {
         candleUrls.push(
           getCandleUrl(
             this.unit,
             this.marketCode,
-            this.timeStamps[i],
+            this.endTime,
             this.MAX_CALL_TIMES
           )
         );
+        for (let i = 0; i < this.callTimes - 2; i++) {
+          candleUrls.push(
+            getCandleUrl(
+              this.unit,
+              this.marketCode,
+              this.timeStamps[i],
+              this.MAX_CALL_TIMES
+            )
+          );
+        }
+        candleUrls.push(
+          getCandleUrl(
+            this.unit,
+            this.marketCode,
+            this.timeStamps[this.timeStamps.length - 1],
+            this.lastCount
+          )
+        );
+      } else if (this.callTimes === 0) {
+        console.log("callTimes is 0");
+      } else {
+        throw error;
       }
-      candleUrls.push(
-        getCandleUrl(
-          this.unit,
-          this.marketCode,
-          this.timeStamps[this.timeStamps.length - 1],
-          this.lastCount
-        )
-      );
-    } else if (this.callTimes === 0) {
-      console.log("callTimes is 0");
-    } else {
-      throw error;
+      return candleUrls;
+    } catch (error) {
+      errorLogger(error, "DayCandleApi<-getCandleUrls");
     }
-    return candleUrls;
   };
 
   updateCandleDatabase = async () => {
-    console.log("now");
-    this.formatCandleData = [];
-
-    for (let i = 0; i < this.candleData.length; i++) {
-      this.formatCandleData.push(parseDayCandleObj(this.candleData[i]));
+    try {
+      this.formatCandleData = [];
+      this.savedData = [];
+      console.log("parsing...");
+      for (let i = 0; i < this.candleData.length; i++) {
+        this.formatCandleData.push(parseDayCandleObj(this.candleData[i]));
+      }
+      console.log("saving...");
+      for (let i = 0; i < this.formatCandleData.length; i++) {
+        const saved = await UpbitApiDayCandle.create(this.formatCandleData[i]);
+        this.savedData.push(saved);
+      }
+      console.log("saved!!");
+      return this.savedData;
+    } catch (error) {
+      errorLogger(error, "DayCandleApi<-updateCandleDatabase");
     }
-    console.dir(this.formatCandleData, { maxArrayLength: null });
-
-    for (let i = 0; i < this.formatCandleData.length; i++) {
-      await UpbitApiDayCandle.create(this.formatCandleData[i]);
-    }
-    return this.formatCandleData;
   };
 }
 
