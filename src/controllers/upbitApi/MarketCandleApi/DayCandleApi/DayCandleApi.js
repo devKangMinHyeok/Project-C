@@ -1,5 +1,6 @@
 //DB Model
 import UpbitApiDayCandle from "../../../../models/UpbitApiDayCandle";
+import UpbitApiUpdateLog from "../../../../models/UpbitApiUpdateLog";
 
 // DayCandleApi Class
 import errorLogger from "../../../usefulFunctions/errorLogger";
@@ -108,7 +109,8 @@ class DayCandleApi {
         const saved = await UpbitApiDayCandle.create(this.formatCandleData[i]);
         this.savedData.push(saved);
       }
-      console.log("saved!!");
+      console.log("saved Day Candle Data!!");
+
       return this.savedData;
     } catch (error) {
       errorLogger(error, "DayCandleApi<-updateCandleDatabase");

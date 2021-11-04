@@ -1,5 +1,6 @@
 // DB Model
 import UpbitApiMarketCode from "../../../models/UpbitApiMarketCode";
+import UpbitApiUpdateLog from "../../../models/UpbitApiUpdateLog";
 
 // MarketCodeApi Class
 import errorLogger from "../../usefulFunctions/errorLogger";

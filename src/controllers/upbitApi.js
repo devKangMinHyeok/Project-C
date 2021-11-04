@@ -1,8 +1,8 @@
 import MarketCodeApi from "./upbitApi/MarketCodeApi/MarketCodeApi";
 import DayCandleApi from "./upbitApi/MarketCandleApi/dayCandleApi/dayCandleApi";
 import errorLogger from "./usefulFunctions/errorLogger";
-
 import dayjs from "dayjs";
+import { updateLoggerDC } from "./usefulFunctions/updateLogger";
 
 //DB Model
 import UpbitApiMarketCode from "../models/UpbitApiMarketCode";
@@ -23,16 +23,21 @@ export const getMarketCode = async (req, res) => {
 export const getDayCandleReset = async (req, res) => {
   try {
     const marketCodeData = await UpbitApiMarketCode.find({});
+    const thisTime = dayjs().tz("Asia/Seoul").format("YYYY-MM-DD HH:mm:ss");
     for (let i = 0; i < marketCodeData.length; i++) {
       const apiDC = new DayCandleApi(
         marketCodeData[i].marketCodeFull,
         dayjs(marketCodeData[i].crapeDay)
           .tz("Asia/Seoul")
           .format("YYYY-MM-DD HH:mm:ss"),
-        "2021-10-29 10:00:00"
+        thisTime
       );
       const candleData = await apiDC.init();
       const formattedCandleData = await apiDC.updateCandleDatabase();
+      const updates = await updateLoggerDC(
+        marketCodeData[i].marketCodeFull,
+        formattedCandleData[0].candleTimeKST
+      );
     }
 
     return res.render("dayCandle");
