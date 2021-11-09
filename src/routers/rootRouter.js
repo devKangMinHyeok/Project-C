@@ -1,11 +1,16 @@
 import express from "express";
-import { getDayCandleReset, getMarketCode } from "../controllers/upbitApi";
+import {
+  getDayCandleReset,
+  getDayCandleUpdate,
+  getMarketCode,
+} from "../controllers/upbitApi";
 import home from "../controllers/home";
 
 const rootRouter = express.Router();
 
 rootRouter.get("/", home);
 rootRouter.get("/marketCode", getMarketCode);
-rootRouter.get("/dayCandle", getDayCandleReset);
+rootRouter.get("/dayCandleReset", getDayCandleReset);
+rootRouter.get("/dayCandleUpdate", getDayCandleUpdate);
 
 export default rootRouter;

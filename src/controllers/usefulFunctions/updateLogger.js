@@ -10,3 +10,9 @@ export const updateLoggerDC = async (marketCodeFull, updateTime) => {
   console.log(result);
   return result;
 };
+
+export const findLogs = async (marketCodeFull) => {
+  const filter = { marketCodeFull };
+  const log = await UpbitApiUpdateLog.findOne(filter);
+  return log;
+};
