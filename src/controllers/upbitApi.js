@@ -50,30 +50,33 @@ export const getDayCandleReset = async (req, res) => {
 };
 
 export const getDayCandleUpdate = async (req, res) => {
-  dayjs.extend(isSameOrAfter);
-  const marketCodeData = await UpbitApiMarketCode.find({});
-  const thisTime = dayjs();
-  for (let i = 0; i < marketCodeData.length; i++) {
-    const updateLogs = await findLogs(marketCodeData[i].marketCodeFull);
-    const updateTime = updateLogs.updateTime.DayCandle;
-    const nextDay = dayjs(updateTime).add(1, "day");
-    if (thisTime.isSameOrAfter(nextDay, "")) {
-      console.log("here");
-      const apiDC = new DayCandleApi(
-        marketCodeData[i].marketCodeFull,
-        nextDay.tz("Asia/Seoul").format("YYYY-MM-DD HH:mm:ss"),
-        thisTime.tz("Asia/Seoul").format("YYYY-MM-DD HH:mm:ss")
-      );
-      const candleData = await apiDC.init();
-      const formattedCandleData = await apiDC.updateCandleDatabase();
-      const updates = await updateLoggerDC(
-        marketCodeData[i].marketCodeFull,
-        formattedCandleData[0].candleTimeKST
-      );
-    } else {
-      console.log(
-        `Already Updated Today for ${marketCodeData[i].marketCodeFull}`
-      );
+  try {
+    dayjs.extend(isSameOrAfter);
+    const marketCodeData = await UpbitApiMarketCode.find({});
+    const thisTime = dayjs();
+    for (let i = 0; i < marketCodeData.length; i++) {
+      const updateLogs = await findLogs(marketCodeData[i].marketCodeFull);
+      const updateTime = updateLogs.updateTime.DayCandle;
+      const nextDay = dayjs(updateTime).add(1, "day");
+      if (thisTime.isSameOrAfter(nextDay)) {
+        const apiDC = new DayCandleApi(
+          marketCodeData[i].marketCodeFull,
+          nextDay.tz("Asia/Seoul").format("YYYY-MM-DD HH:mm:ss"),
+          thisTime.tz("Asia/Seoul").format("YYYY-MM-DD HH:mm:ss")
+        );
+        const candleData = await apiDC.init();
+        const formattedCandleData = await apiDC.updateCandleDatabase();
+        const updates = await updateLoggerDC(
+          marketCodeData[i].marketCodeFull,
+          formattedCandleData[0].candleTimeKST
+        );
+      } else {
+        console.log(
+          `Already Updated Today for ${marketCodeData[i].marketCodeFull}`
+        );
+      }
     }
+  } catch (error) {
+    errorLogger(error, "getDayCandleUpdate");
   }
 };

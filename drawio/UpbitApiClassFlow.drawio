@@ -1,11 +1,11 @@
 <mxfile host="65bd71144e">
     <diagram id="gN6UAg-psv94rRiMVGNz" name="Page-1">
-        <mxGraphModel dx="604" dy="599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="564" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="41" value="&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;MarketCodeApi&lt;/b&gt;&lt;/font&gt;" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;strokeColor=none;fontColor=#FFFFFF;fillColor=#828282;" parent="1" vertex="1">
-                    <mxGeometry x="40" y="160" width="240" height="348" as="geometry"/>
+                    <mxGeometry x="40" y="1" width="240" height="348" as="geometry"/>
                 </mxCell>
                 <mxCell id="42" value="attributes" style="text;html=1;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#474747;fontColor=#FFFFFF;fontSize=13;fontStyle=1" parent="41" vertex="1">
                     <mxGeometry y="30" width="240" height="20" as="geometry"/>
@@ -45,6 +45,69 @@
                 </mxCell>
                 <mxCell id="67" value="+ updateDatabase()" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" parent="41" vertex="1">
                     <mxGeometry y="328" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="68" value="&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;DayCandleApi&lt;/b&gt;&lt;/font&gt;" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;strokeColor=none;fontColor=#FFFFFF;fillColor=#828282;" vertex="1" parent="1">
+                    <mxGeometry x="360" y="1" width="240" height="1168" as="geometry"/>
+                </mxCell>
+                <mxCell id="69" value="attributes" style="text;html=1;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#474747;fontColor=#FFFFFF;fontSize=13;fontStyle=1" vertex="1" parent="68">
+                    <mxGeometry y="30" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" value="&lt;font&gt;- marketCode: String&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="50" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="82" value="&lt;font&gt;- endTime: String&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="70" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="71" value="&lt;font&gt;- options: Object&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; method: String&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; headers: Object&lt;br&gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="90" width="240" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="83" value="&lt;font&gt;- sliceInfo: Object&lt;br&gt;&lt;span&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; startDate: String&lt;br&gt;&lt;span&gt;&#9;&lt;/span&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; endDate: String&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; diffDay: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; candleNum: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; callTimes: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; lastCount: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; timeStamps: Array&amp;lt;String&amp;gt;&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; MAX_CALL_TIMES: Number&lt;br&gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="140" width="240" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="84" value="&lt;font&gt;- MAX_CALL_TIMES: Number&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="280" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="85" value="&lt;font&gt;- callTimes: Number&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="300" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="86" value="&lt;font&gt;- candleNum: Number&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="320" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="88" value="&lt;font&gt;- lastCount: Number&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="340" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="90" value="&lt;font&gt;- timeStamps: Number&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="360" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="89" value="&lt;font&gt;- unit: String&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="380" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" value="&lt;font&gt;- candleUrls: Array&amp;lt;String&amp;gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="400" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="73" value="&lt;font&gt;- candleData:&amp;nbsp;&lt;/font&gt;Array&amp;lt;Object&amp;gt;&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; market: String&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; candle_date_time_utc: String&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; candle_date_time_kst: String&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; opening_price: Integer&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; high_price: Integer&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; low_price: Integer&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; trade_price: Integer&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; timestamp: Integer&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; candle_acc_trade_price: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; candle_acc_trade_volume: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; prev_closing_price: Integer&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; change_price: Integer&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; change_rate: Number" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="420" width="240" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="74" value="&lt;font&gt;- formatCandleData:&amp;nbsp;&lt;/font&gt;Array&amp;lt;Object&amp;gt;&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; marketCodeFull: String&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; candleTimeKST: Date&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; openingPrice: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; highPrice: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; lowPrice: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; tradePrice: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; lastTickTime: Date&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; accTradePrice: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; accTradeVolume: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; prevClosingPrice: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; changePrice: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; changeRate: Number" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="640" width="240" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="91" value="&lt;font&gt;- savedData:&amp;nbsp;&lt;/font&gt;Array&amp;lt;Object&amp;gt;&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; _id: ObjectId&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; marketCodeFull: String&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; candleTimeKST: Date&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; openingPrice: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; highPrice: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; lowPrice: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; tradePrice: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; lastTickTime: Date&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; accTradePrice: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; accTradeVolume: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; prevClosingPrice: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; changePrice: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; changeRate: Number&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;&amp;gt; createdAt: Date" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="840" width="240" height="230" as="geometry"/>
+                </mxCell>
+                <mxCell id="76" value="operations" style="text;html=1;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#474747;fontColor=#FFFFFF;fontSize=13;fontStyle=1" vertex="1" parent="68">
+                    <mxGeometry y="1070" width="240" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" value="+ init(): Array&amp;lt;Object&amp;gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="1088" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="78" value="+ getApi(): Object" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="1108" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="79" value="+ getCandleUrls(): Array&amp;lt;String&amp;gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="1128" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="80" value="+ updateCandleDatabase(): Array&amp;lt;Object&amp;gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#2a2a2a;fontColor=#FFFFFF;" vertex="1" parent="68">
+                    <mxGeometry y="1148" width="240" height="20" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
